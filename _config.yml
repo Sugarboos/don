@@ -1,0 +1,9 @@
+# If GitHub Pages ever runs Jekyll on this repo by mistake, do not process Astro sources.
+# Correct setup: Settings → Pages → Source: GitHub Actions (see .github/workflows/deploy-github-pages.yml).
+exclude:
+  - website/src
+  - website/node_modules
+  - website/dist
+  - website/.astro
+  - website/package-lock.json
+  - organized_tech_spec.md

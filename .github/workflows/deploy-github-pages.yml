@@ -1,0 +1,73 @@
+# Builds the Astro site in website/ and deploys to GitHub Pages.
+# Repo layout: repository root contains the website/ folder (same as this workspace).
+#
+# Setup in GitHub: Settings → Pages → Source: GitHub Actions.
+# First push to main runs the workflow; the site URL is shown in the job summary.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compute site URL and base path
+        id: site
+        shell: bash
+        run: |
+          REPO="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
+          SITE="https://${OWNER}.github.io"
+          if [[ "$REPO" == *.github.io ]]; then
+            BASE="/"
+          else
+            BASE="/${REPO}"
+          fi
+          echo "site=${SITE}" >> "$GITHUB_OUTPUT"
+          echo "base=${BASE}" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install and build
+        working-directory: website
+        env:
+          SITE_URL: ${{ steps.site.outputs.site }}
+          BASE_PATH: ${{ steps.site.outputs.base }}
+        run: npm ci && npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: website/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

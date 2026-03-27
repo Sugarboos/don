@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Kontakt | DON Logistik GmbH"
+	description="Kontaktieren Sie DON Logistik GmbH in Köln für Transport- und Logistikanfragen."
+>
+	<div class="container legal-content">
+		<h1>Kontakt &amp; Anfrage</h1>
+		<p>
+			Verwenden Sie das Formular, um uns eine strukturierte E-Mail zu senden. Ihr Standard-E-Mail-Programm öffnet
+			sich mit vorbefülltem Betreff und Text. Alternativ erreichen Sie uns nach Freigabe der Kontaktdaten
+			direkt telefonisch.
+		</p>
+
+		<div class="glass card-pad form-section">
+			<form id="contact-form" class="form-grid">
+				<div class="form-grid cols-2">
+					<div>
+						<label for="firma">Firma</label>
+						<input id="firma" name="firma" type="text" autocomplete="organization" required />
+					</div>
+					<div>
+						<label for="name">Ansprechpartner</label>
+						<input id="name" name="name" type="text" autocomplete="name" required />
+					</div>
+				</div>
+				<div class="form-grid cols-2">
+					<div>
+						<label for="email">E-Mail</label>
+						<input id="email" name="email" type="email" autocomplete="email" required />
+					</div>
+					<div>
+						<label for="telefon">Telefon</label>
+						<input id="telefon" name="telefon" type="tel" autocomplete="tel" />
+					</div>
+				</div>
+				<div>
+					<label for="betreff">Betreff</label>
+					<input id="betreff" name="betreff" type="text" required />
+				</div>
+				<div>
+					<label for="nachricht">Nachricht</label>
+					<textarea id="nachricht" name="nachricht" required></textarea>
+				</div>
+				<div>
+					<button type="submit" class="btn">E-Mail entwurf öffnen</button>
+					<p class="form-hint">
+						Beim Absenden werden keine Daten auf unseren Servern gespeichert; der Versand erfolgt über Ihr
+						E-Mail-Programm. Bitte ersetzen Sie die Platzhalter-E-Mail, sobald die finale Adresse feststeht.
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+</BaseLayout>
+
+<script>
+	import { CONTACT_EMAIL } from "../lib/constants";
+
+	const form = document.getElementById("contact-form") as HTMLFormElement | null;
+	form?.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const fd = new FormData(form);
+		const firma = String(fd.get("firma") ?? "");
+		const name = String(fd.get("name") ?? "");
+		const email = String(fd.get("email") ?? "");
+		const telefon = String(fd.get("telefon") ?? "");
+		const betreff = String(fd.get("betreff") ?? "");
+		const nachricht = String(fd.get("nachricht") ?? "");
+
+		const body = [
+			`Firma: ${firma}`,
+			`Ansprechpartner: ${name}`,
+			`E-Mail: ${email}`,
+			telefon ? `Telefon: ${telefon}` : "",
+			"",
+			nachricht,
+		]
+			.filter(Boolean)
+			.join("\n");
+
+		const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(body)}`;
+		window.location.href = mailto;
+	});
+</script>
+
+<style>
+	.form-section {
+		max-width: 720px;
+		margin-top: var(--space-lg);
+	}
+	.card-pad {
+		padding: var(--space-lg);
+	}
+</style>

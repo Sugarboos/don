@@ -1,0 +1,96 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="container footer-grid">
+		<div>
+			<p class="footer-brand">DON Logistik GmbH</p>
+			<p class="footer-address">
+				Methweg 4g<br />
+				D-50823 Köln
+			</p>
+		</div>
+		<div>
+			<h2 class="footer-heading">Rechtliches</h2>
+			<ul class="footer-links">
+				<li><a href="/impressum">Impressum</a></li>
+				<li><a href="/datenschutz">Datenschutz</a></li>
+				<li><a href="/agb">AGB</a></li>
+			</ul>
+		</div>
+		<div>
+			<h2 class="footer-heading">Kontakt</h2>
+			<ul class="footer-links">
+				<li><a href="/kontakt">Anfrage & Kontakt</a></li>
+				<li>
+					E-Mail und Telefon werden nach Freigabe ergänzt.
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container footer-bottom">
+		<p>© {year} DON Logistik GmbH. Alle Rechte vorbehalten.</p>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		margin-top: var(--space-2xl);
+		padding-block: var(--space-2xl);
+		border-top: 1px solid var(--color-border);
+		background: var(--color-bg-elevated);
+	}
+	.footer-grid {
+		display: grid;
+		gap: var(--space-xl);
+	}
+	@media (min-width: 768px) {
+		.footer-grid {
+			grid-template-columns: 1.2fr 1fr 1fr;
+		}
+	}
+	.footer-brand {
+		font-family: var(--font-display);
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--color-text);
+		margin-bottom: var(--space-sm);
+	}
+	.footer-address {
+		font-size: 0.9375rem;
+		color: var(--color-text-muted);
+		margin: 0;
+	}
+	.footer-heading {
+		font-size: 0.6875rem;
+		letter-spacing: 0.14em;
+		margin: 0 0 var(--space-sm);
+		color: var(--color-text-muted);
+	}
+	.footer-links {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		font-size: 0.9375rem;
+		color: var(--color-text-muted);
+	}
+	.footer-links li {
+		margin-bottom: var(--space-xs);
+	}
+	.footer-links a {
+		color: var(--color-text);
+	}
+	.footer-bottom {
+		margin-top: var(--space-xl);
+		padding-top: var(--space-lg);
+		border-top: 1px solid var(--color-border);
+		font-size: 0.8125rem;
+		color: var(--color-text-muted);
+	}
+	.footer-bottom p {
+		margin: 0;
+		max-width: none;
+	}
+</style>

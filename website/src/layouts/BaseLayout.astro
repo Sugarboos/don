@@ -1,0 +1,37 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.astro";
+
+interface Props {
+	title: string;
+	description?: string;
+}
+const { title, description = "DON Logistik GmbH — gewerblicher Güterverkehr und Logistik in Köln." } =
+	Astro.props;
+const site = Astro.site?.href ?? Astro.url.origin;
+const canonical = new URL(Astro.url.pathname, site).href;
+---
+
+<!doctype html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<link rel="canonical" href={canonical} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body data-cookie-pending="true">
+		<a class="sr-only" href="#main">Zum Inhalt springen</a>
+		<Header />
+		<main id="main">
+			<slot />
+		</main>
+		<Footer />
+		<CookieBanner />
+	</body>
+</html>

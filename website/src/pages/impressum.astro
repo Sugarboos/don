@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Impressum | DON Logistik GmbH"
+	description="Impressangabe der DON Logistik GmbH gemäß §5 TMG."
+>
+	<article class="container legal-content">
+		<h1>Impressum</h1>
+		<p class="legal-note">
+			Angaben gemäß § 5 TMG. Bitte ergänzen Sie fehlende Kontaktdaten (E-Mail, Telefon, USt-IdNr.) nach finaler
+			Freigabe.
+		</p>
+
+		<h2>Diensteanbieter</h2>
+		<p>
+			DON Logistik GmbH<br />
+			Methweg 4g<br />
+			D-50823 Köln<br />
+			Deutschland
+		</p>
+
+		<h2>Register &amp; Vertretung</h2>
+		<p>
+			Handelsregister: Amtsgericht Köln, HRB 110581<br />
+			Geschäftsführerin: Alissa Mouayyad
+		</p>
+
+		<h2>Kontakt</h2>
+		<p>
+			E-Mail: [bitte ergänzen]<br />
+			Telefon: [bitte ergänzen]
+		</p>
+
+		<h2>Umsatzsteuer</h2>
+		<p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: [falls zutreffend, bitte ergänzen]</p>
+
+		<h2>Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</h2>
+		<p>Alissa Mouayyad, Anschrift wie oben.</p>
+
+		<h2>Hinweis zu Streitbeilegung</h2>
+		<p>
+			Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+			<a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer"
+				>https://ec.europa.eu/consumers/odr/</a
+			>. Wir sind nicht verpflichtet und grundsätzlich nicht bereit, an Streitbeilegungsverfahren vor einer
+			Verbraucherschlichtungsstelle teilzunehmen, sofern keine gesetzliche Pflicht besteht.
+		</p>
+
+		<h2>Haftung für Inhalte &amp; Links</h2>
+		<p>
+			Die Inhalte dieser Website wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und
+			Aktualität übernehmen wir keine Gewähr. Für externe Links sind wir nur zum Zeitpunkt der Verlinkung für die
+			Inhalte verantwortlich; Änderungen der verlinkten Seiten liegen außerhalb unseres Einflusses.
+		</p>
+	</article>
+</BaseLayout>
+
+<style>
+	.legal-note {
+		padding: var(--space-md);
+		border-left: 3px solid var(--color-accent);
+		background: var(--color-accent-soft);
+		border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+		color: var(--color-text);
+		max-width: 65ch;
+	}
+</style>

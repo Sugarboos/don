@@ -1,0 +1,147 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="DON Logistik GmbH | Spedition & Güterverkehr Köln"
+	description="Zuverlässiger Lager-zu-Lager-Transport über 3,5 t, Import/Export, Amazon Relay und Fernverkehr — DON Logistik GmbH in Köln."
+>
+	<section class="hero container">
+		<div class="hero-grid">
+			<div>
+				<p class="tag">Spedition Köln · NRW · Europa</p>
+				<h1>Zuverlässiger Güterverkehr für die Logistik von heute</h1>
+				<p>
+					DON Logistik GmbH organisiert gewerblichen Güterverkehr über 3,5 Tonnen, nationale und internationale
+					Transporte sowie begleitende Logistikdienstleistungen — mit klaren Prozessen und Fokus auf
+					Termintreue.
+				</p>
+				<div class="hero-actions">
+					<a class="btn" href="/kontakt">Angebot anfragen</a>
+					<a class="btn btn-secondary" href="/kontakt">Kontakt</a>
+				</div>
+			</div>
+			<div class="hero-visual" aria-hidden="true">
+				<div class="route-map">
+					<svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+						<path
+							d="M20 180 C80 40 120 40 200 100 C280 160 320 20 380 60"
+							stroke="rgba(255,61,0,0.45)"
+							stroke-width="2"
+							stroke-dasharray="8 6"
+							stroke-linecap="round"></path>
+						<circle cx="200" cy="100" r="6" fill="#ff3d00"></circle>
+						<circle cx="80" cy="50" r="4" fill="rgba(232,234,239,0.5)"></circle>
+						<circle cx="320" cy="140" r="4" fill="rgba(232,234,239,0.5)"></circle>
+						<text x="24" y="32" fill="rgba(139,146,163,0.85)" font-size="11" font-family="DM Sans, sans-serif">
+							Netz · Streckenplanung
+						</text>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="leistungen" class="container stack-lg section-pad">
+		<h2>Leistungen</h2>
+		<div class="grid-3">
+			<article class="glass card-pad">
+				<h3>Import &amp; Export</h3>
+				<p>
+					Organisation grenzüberschreitender Transporte mit dokumentationsbewusster Abwicklung für
+					Ihre Lieferketten.
+				</p>
+			</article>
+			<article class="glass card-pad">
+				<h3>Amazon Relay</h3>
+				<p>
+					Abstimmung und Durchführung von Fahrten im Partnernetzwerk — strukturierte Kommunikation und
+					planbare Slots.
+				</p>
+			</article>
+			<article class="glass card-pad">
+				<h3>Fernverkehr</h3>
+				<p>
+					Langstrecken-Transporte mit Schwerpunkt auf Effizienz, Ladungssicherheit und verlässlicher
+					Disposition.
+				</p>
+			</article>
+		</div>
+	</section>
+
+	<section id="stats" class="container section-pad">
+		<div class="grid-3">
+			<div class="glass stat-card">
+				<div class="stat-value">2022</div>
+				<div class="stat-label">Gründung · Erfahrung im Markt</div>
+			</div>
+			<div class="glass stat-card">
+				<div class="stat-value">NRW</div>
+				<div class="stat-label">Standort Köln · Zentral in Europa</div>
+			</div>
+			<div class="glass stat-card">
+				<div class="stat-value">&gt;3,5t</div>
+				<div class="stat-label">Gewerblicher Güterverkehr</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="flotte" class="container stack-lg section-pad">
+		<h2>Flotte &amp; Ausstattung</h2>
+		<p>
+			Lkw-Bilder und detaillierte Fahrzeugtypen werden nach Freigabe ergänzt. Wir stellen schwerpunktmäßig moderne
+			Zugmaschinen und Auflieger für den Fern- und Distributionstransport bereit.
+		</p>
+		<div class="grid-2">
+			<div class="glass card-pad">
+				<h3>Zugmaschinen</h3>
+				<p>Schwere Nutzfahrzeuge für GCW im gewerblichen Einsatz — gewartet und dokumentiert.</p>
+			</div>
+			<div class="glass card-pad">
+				<h3>Auflieger</h3>
+				<p>Planung nach Ladungsprofil — Gewehrheit und Termintreue stehen im Mittelpunkt.</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="compliance" class="container stack-lg section-pad section-last">
+		<h2>Sicherheit, Versicherung &amp; Compliance</h2>
+		<div class="grid-2">
+			<div class="glass card-pad">
+				<h3>Transportrecht</h3>
+				<p>
+					Wir arbeiten im Rahmen des geltenden Güterkraftverkehrsrechts und halten die erforderlichen
+					gewerbe- und transportrechtlichen Vorgaben ein.
+				</p>
+			</div>
+			<div class="glass card-pad">
+				<h3>Sicherheitsdienstleistungen</h3>
+				<p>
+					Bei gebundenen Sicherheitsleistungen beachten wir die Anforderungen nach §34a GewO; Einzelheiten
+					vereinbaren wir transparent im Vorfeld.
+				</p>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm);
+		margin-top: var(--space-lg);
+	}
+	.section-pad {
+		padding-bottom: var(--space-xl);
+	}
+	.section-last {
+		padding-bottom: var(--space-2xl);
+	}
+	.card-pad {
+		padding: var(--space-lg);
+	}
+	.card-pad p:last-child {
+		margin-bottom: 0;
+	}
+</style>

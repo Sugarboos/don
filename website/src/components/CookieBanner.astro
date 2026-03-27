@@ -1,0 +1,91 @@
+---
+/* GDPR-oriented banner: tracking scripts should check data-consent before loading */
+---
+
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-modal="true" hidden>
+	<div class="cookie-inner glass">
+		<h2 id="cookie-title" class="cookie-title">Cookies &amp; Datenschutz</h2>
+		<p class="cookie-text">
+			Wir verwenden nur technisch notwendige Cookies für den Betrieb dieser Website. Optional können Sie der
+			Nutzung von Analyse-Tools zustimmen — diese werden erst nach Ihrer Einwilligung geladen.
+		</p>
+		<div class="cookie-actions">
+			<button type="button" class="btn" id="cookie-accept-necessary">Nur notwendige</button>
+			<button type="button" class="btn btn-secondary" id="cookie-accept-all">Alle akzeptieren</button>
+		</div>
+		<p class="cookie-legal">
+			Details finden Sie in unserer <a href="/datenschutz">Datenschutzerklärung</a>.
+		</p>
+	</div>
+</div>
+
+<script is:inline>
+	(function () {
+		var KEY = "don-logistik-consent";
+		var banner = document.getElementById("cookie-banner");
+		if (!banner) return;
+
+		function applyConsent(level) {
+			document.documentElement.setAttribute("data-cookie-consent", level);
+			document.body.removeAttribute("data-cookie-pending");
+			banner.hidden = true;
+			try {
+				localStorage.setItem(KEY, level);
+			} catch (_) {}
+			window.dispatchEvent(new CustomEvent("cookie-consent", { detail: { level } }));
+		}
+
+		try {
+			var stored = localStorage.getItem(KEY);
+			if (stored === "all" || stored === "necessary") {
+				applyConsent(stored);
+				return;
+			}
+		} catch (_) {}
+
+		banner.hidden = false;
+
+		document.getElementById("cookie-accept-necessary")?.addEventListener("click", function () {
+			applyConsent("necessary");
+		});
+		document.getElementById("cookie-accept-all")?.addEventListener("click", function () {
+			applyConsent("all");
+		});
+	})();
+</script>
+
+<style>
+	.cookie-banner {
+		position: fixed;
+		inset: auto 0 0 0;
+		z-index: 100;
+		padding: var(--space-md);
+		pointer-events: none;
+	}
+	.cookie-inner {
+		max-width: 520px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: var(--space-lg);
+		pointer-events: auto;
+	}
+	.cookie-title {
+		font-size: 1rem;
+		margin-bottom: var(--space-sm);
+	}
+	.cookie-text,
+	.cookie-legal {
+		font-size: 0.875rem;
+		margin-bottom: var(--space-md);
+		color: var(--color-text-muted);
+	}
+	.cookie-legal {
+		margin-bottom: 0;
+	}
+	.cookie-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm);
+		margin-bottom: var(--space-md);
+	}
+</style>

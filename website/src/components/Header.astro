@@ -1,0 +1,99 @@
+---
+const path = Astro.url.pathname;
+const nav = [
+	{ href: "/", label: "Start" },
+	{ href: "/#leistungen", label: "Leistungen" },
+	{ href: "/#flotte", label: "Flotte" },
+	{ href: "/kontakt", label: "Kontakt" },
+];
+---
+
+<header class="site-header">
+	<div class="container header-inner">
+		<a href="/" class="logo" aria-label="DON Logistik GmbH Startseite">
+			<span class="logo-mark">DON</span>
+			<span class="logo-text">Logistik</span>
+		</a>
+		<nav class="nav" aria-label="Hauptnavigation">
+			<ul>
+				{
+					nav.map((item) => (
+						<li>
+							<a
+								href={item.href}
+								class:list={[
+									"nav-link",
+									{
+										active: item.href === "/" && path === "/",
+									},
+								]}
+								aria-current={item.href === "/" && path === "/" ? "page" : undefined}
+							>
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		padding-block: var(--space-md);
+		background: rgba(10, 12, 15, 0.82);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--color-border);
+	}
+	.header-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-lg);
+	}
+	.logo {
+		display: flex;
+		align-items: baseline;
+		gap: 0.35rem;
+		color: var(--color-text);
+		text-decoration: none;
+		font-family: var(--font-display);
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+	.logo:hover {
+		color: var(--color-text);
+	}
+	.logo-mark {
+		color: var(--color-accent);
+	}
+	.logo-text {
+		font-size: 0.95rem;
+	}
+	.nav ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm) var(--space-lg);
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.nav-link {
+		font-family: var(--font-display);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-text-muted);
+	}
+	.nav-link:hover,
+	.nav-link.active {
+		color: var(--color-text);
+	}
+</style>
